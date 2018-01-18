@@ -1,6 +1,6 @@
 def sendmsg(c):
 	while True:
-		c.settimeout(5)
+		
 		message=input()
 		message+="\n"
 		b = bytes(message, 'utf-8')
@@ -26,8 +26,8 @@ while True:
 	Sentence = clientSocket.recv(1024)
 	if not Sentence:
 		break
-	print ("from server ->" + str(Sentence.decode('ascii')))
-	
+	print ( str(Sentence.decode('ascii')))
+clientSocket.close()	
 
 
 
