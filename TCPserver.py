@@ -1,7 +1,5 @@
 def serve(c,h,port):
-	print("connected to host  " + h + "  port " +str(port))
-	#c.settimeout(5.0)
-	
+	print("connected to host  " + h + "  port " +str(port))	
 	message=c.recv(1024)
 	if not message:
 		c.close()
@@ -9,7 +7,7 @@ def serve(c,h,port):
 	print ("From client " + host + " port "+str(port) +"  ->  " + message)		
 	b=bytes(message,'utf-8')
 	c.send(b)
-		
+	c.shutdown(1)		
 	c.close()				
 		
 		
@@ -22,7 +20,7 @@ serverPort = 11115
 serverIP="10.64.10.243"
 serverSocket = socket(AF_INET,SOCK_STREAM)
 serverSocket.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
-serverSocket.bind((serverIP,serverPort))
+serverSocket.bind(('',serverPort))
 serverSocket.listen(10)
 connection=False
 print ('The server is ready to receive')
