@@ -1,14 +1,15 @@
 def serve(c,h,port):
 	print("connected to host  " + h + "  port " +str(port))	
-	message=c.recv(1024)
-	if not message:
-		c.close()
-	message=str(message.decode("ascii"))		
-	print ("From client " + host + " port "+str(port) +"  ->  " + message)		
-	b=bytes(message,'utf-8')
-	c.send(b)
-	c.shutdown(1)		
+	while 1:
+		message=c.recv(1024)
+		if not message:
+			break;
+		message=str(message.decode("ascii"))		
+		print ("From client " + host + " port "+str(port) +"  ->  " + message)		
+		b=bytes(message,'utf-8')
+		c.send(b)
 	c.close()				
+						
 		
 		
 		
